@@ -2,7 +2,7 @@
 
 [중요]
 1. config.js를 메모장으로 엽니다.
-2. SUPABASE_PUBLISHABLE_KEY의 "여기에_sb_publishable_키를_붙여넣으세요" 부분을
+2. SUPABASE_PUBLISHABLE_KEY의 "sb_publishable_5_I_q1nIrBbVxvP1mvfnvg_JFdTITzu" 부분을
    Supabase에서 복사한 sb_publishable_... 키로 교체합니다.
 3. sb_secret_... 키는 절대로 넣지 마세요.
 4. 저장합니다.
