@@ -8,74 +8,60 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="app">
-    <section id="startScreen" class="screen active">
-      <div class="seal">密</div>
-      <p class="eyebrow">JINJUSEONG SECRET MISSION</p>
-      <h1>진주성<br><span>비밀노트</span></h1>
-      <p class="story">진주성 곳곳에 흩어진 6개의 단서.<br>현장을 탐색하고 비밀문서를 완성하라.</p>
+<main class="app">
+<section id="startScreen" class="screen active">
+  <div class="seal">密</div>
+  <p class="eyebrow">JINJUSEONG SECRET MISSION</p>
+  <h1>진주성<br><span>비밀노트</span></h1>
+  <p class="story">진주성 곳곳에 흩어진 6개의 단서.<br>현장을 직접 기록하고 비밀문서를 완성하라.</p>
+  <div class="paper form">
+    <label>학년<select id="grade"><option value="2">2학년</option><option value="3">3학년</option></select></label>
+    <label>반<input id="classNo" inputmode="numeric" placeholder="예: 1"></label>
+    <label>팀명<input id="teamName" maxlength="20" placeholder="예: 바이오 탐험대"></label>
+    <button id="startBtn" class="primary">비밀 임무 시작</button>
+  </div>
+</section>
 
-      <div class="paper form">
-        <label>학년
-          <select id="grade">
-            <option value="2">2학년</option>
-            <option value="3">3학년</option>
-          </select>
-        </label>
-        <label>반 <input id="classNo" inputmode="numeric" placeholder="예: 1"></label>
-        <label>팀명 <input id="teamName" maxlength="20" placeholder="예: 바이오 탐험대"></label>
-        <button id="startBtn" class="primary">비밀 임무 시작</button>
+<section id="missionScreen" class="screen">
+  <header><div><p class="eyebrow">SECRET JOURNAL</p><h2>진주성 비밀노트</h2><p id="teamLabel" class="muted"></p></div><button id="resetBtn" class="ghost">초기화</button></header>
+  <div class="progress-wrap"><div class="progress-info"><span>임무 진행률</span><strong id="progressText">0 / 6</strong></div><div class="progress"><div id="progressBar"></div></div></div>
+  <div id="missionList" class="mission-list"></div>
+</section>
+
+<section id="detailScreen" class="screen">
+  <button id="backBtn" class="back">← 임무 목록</button>
+  <div class="paper detail">
+    <p id="missionNumber" class="eyebrow"></p><h2 id="missionTitle"></h2><div id="missionStamp" class="stamp">CLEAR</div>
+    <p id="missionStory" class="mission-story"></p>
+    <div class="location"><span>📍</span><div><small>탐색 장소</small><strong id="missionLocation"></strong></div></div>
+
+    <div class="camera-box">
+      <small>STEP 1 · 현장 인증</small>
+      <p id="photoInstruction"></p>
+      <input id="photoInput" type="file" accept="image/*" capture="environment" hidden>
+      <button id="cameraBtn" class="camera-btn">📷 현장 사진 촬영</button>
+      <div id="previewWrap" class="preview-wrap">
+        <img id="photoPreview" alt="촬영 사진 미리보기">
+        <button id="retakeBtn" class="ghost dark">↻ 다시 촬영</button>
       </div>
-    </section>
+      <p id="photoStatus" class="photo-status">사진을 촬영해야 문제를 풀 수 있습니다.</p>
+    </div>
 
-    <section id="missionScreen" class="screen">
-      <header>
-        <div>
-          <p class="eyebrow">SECRET JOURNAL</p>
-          <h2>진주성 비밀노트</h2>
-          <p id="teamLabel" class="muted"></p>
-        </div>
-        <button id="resetBtn" class="ghost">초기화</button>
-      </header>
+    <div id="questionBox" class="question disabled">
+      <small>STEP 2 · 현장 조사</small>
+      <p id="missionQuestion"></p>
+      <input id="answerInput" autocomplete="off" placeholder="정답을 입력하세요" disabled>
+      <button id="answerBtn" class="primary" disabled>정답 확인</button>
+      <p id="feedback" class="feedback"></p>
+    </div>
+  </div>
+</section>
 
-      <div class="progress-wrap">
-        <div class="progress-info"><span>임무 진행률</span><strong id="progressText">0 / 6</strong></div>
-        <div class="progress"><div id="progressBar"></div></div>
-      </div>
-
-      <div id="missionList" class="mission-list"></div>
-    </section>
-
-    <section id="detailScreen" class="screen">
-      <button id="backBtn" class="back">← 임무 목록</button>
-      <div class="paper detail">
-        <p id="missionNumber" class="eyebrow"></p>
-        <h2 id="missionTitle"></h2>
-        <div id="missionStamp" class="stamp"></div>
-        <p id="missionStory" class="mission-story"></p>
-        <div class="location"><span>📍</span><div><small>탐색 장소</small><strong id="missionLocation"></strong></div></div>
-        <div class="question">
-          <small>현장 조사</small>
-          <p id="missionQuestion"></p>
-          <input id="answerInput" autocomplete="off" placeholder="정답을 입력하세요">
-          <button id="answerBtn" class="primary">정답 확인</button>
-          <p id="feedback" class="feedback"></p>
-        </div>
-      </div>
-    </section>
-
-    <section id="completeScreen" class="screen complete">
-      <div class="seal">完</div>
-      <p class="eyebrow">ALL MISSIONS CLEARED</p>
-      <h1>비밀문서<br>복원 완료</h1>
-      <p id="completeTeam"></p>
-      <div class="paper">
-        <p>진주성에 흩어진 모든 단서를 찾아냈습니다.</p>
-        <div class="final-stamps">✓ ✓ ✓ ✓ ✓ ✓</div>
-      </div>
-      <button id="homeBtn" class="ghost light">임무 기록 다시 보기</button>
-    </section>
-  </main>
-  <script src="script.js"></script>
-</body>
-</html>
+<section id="completeScreen" class="screen complete">
+  <div class="seal">完</div><p class="eyebrow">ALL MISSIONS CLEARED</p><h1>비밀문서<br>복원 완료</h1>
+  <p id="completeTeam"></p><div class="paper center"><p>진주성에 흩어진 모든 단서를 찾아냈습니다.</p><div class="final-stamps">✓ ✓ ✓ ✓ ✓ ✓</div></div>
+  <button id="homeBtn" class="ghost light">임무 기록 다시 보기</button>
+</section>
+</main>
+<script src="script.js"></script>
+</body></html>
